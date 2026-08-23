@@ -1,0 +1,26 @@
+
+# ============================================
+# Lumiere Backend Security
+# ============================================
+
+.env
+
+server/credentials/
+server/credentials/*.json
+
+node_modules/
+dist/
+
+
+# Environment variables
+.env
+.env.*
+
+# Google service account credentials
+server/credentials/service-account.json
+
+.env.local
+
+server/server.backup.js
+
+!.env.example
