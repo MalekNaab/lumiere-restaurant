@@ -1,0 +1,2244 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap");
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root {
+  --background: #090909;
+  --background-light: #101010;
+  --background-card: #0d0d0d;
+
+  --gold: #caa765;
+  --gold-light: #e2c585;
+
+  --cream: #f5efe5;
+  --muted: #a7a198;
+
+  --border: rgba(255, 255, 255, 0.12);
+  --gold-border: rgba(202, 167, 101, 0.55);
+}
+
+/* =====================================================
+   RESET / GLOBAL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--cream);
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  transition: 0.3s ease;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+.restaurant-logo,
+.footer-logo {
+  font-family: "Cormorant Garamond", serif;
+}
+
+h2 {
+  font-size: clamp(2.8rem, 5vw, 4.7rem);
+  line-height: 1;
+  font-weight: 500;
+}
+
+h2 span {
+  display: block;
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+p {
+  line-height: 1.8;
+}
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+.section-padding {
+  padding: 115px 0;
+}
+
+.section-label,
+.hero-eyebrow {
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.section-description {
+  max-width: 650px;
+  color: var(--muted);
+}
+
+.section-heading {
+  margin-bottom: 55px;
+}
+
+.gold-line {
+  width: 45px;
+  height: 1px;
+  margin: 30px 0;
+  background: var(--gold);
+}
+
+.gold-line.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  padding: 14px 28px;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.btn::before,
+.nav-book-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.17),
+    transparent
+  );
+
+  transition: left 0.55s ease;
+}
+
+.btn:hover::before,
+.nav-book-btn:hover::before {
+  left: 120%;
+}
+
+.btn-gold {
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: #090909;
+}
+
+.btn-gold:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  color: #090909;
+  transform: translateY(-2px);
+}
+
+.btn-outline-gold,
+.btn-outline-luxury {
+  background: transparent;
+  border: 1px solid var(--gold-border);
+  color: var(--cream);
+}
+
+.btn-outline-gold:hover,
+.btn-outline-luxury:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #090909;
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  width: 100%;
+  padding: 25px 0;
+
+  background: transparent;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition:
+    background 0.35s ease,
+    padding 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+.main-navbar.scrolled {
+  padding: 14px 0;
+
+  background: rgba(7, 7, 7, 0.86);
+
+  border-bottom: 1px solid rgba(202, 167, 101, 0.18);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.28);
+}
+
+.main-navbar.menu-open {
+  background: rgba(7, 7, 7, 0.97);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.restaurant-logo {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 1.9rem;
+  letter-spacing: 5px;
+  line-height: 1;
+
+  transition:
+    color 0.3s ease,
+    font-size 0.35s ease;
+}
+
+.restaurant-logo:hover {
+  color: var(--gold-light);
+}
+
+.restaurant-logo small {
+  display: block;
+  margin-top: 8px;
+
+  color: var(--gold);
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.42rem;
+  letter-spacing: 5px;
+
+  transition: margin 0.35s ease;
+}
+
+.main-navbar.scrolled .restaurant-logo {
+  font-size: 1.65rem;
+}
+
+.main-navbar.scrolled .restaurant-logo small {
+  margin-top: 5px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.nav-links a {
+  position: relative;
+
+  color: #dedad4;
+
+  text-decoration: none;
+
+  font-size: 0.7rem;
+
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--gold);
+
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-book-btn {
+  position: relative;
+  overflow: hidden;
+
+  padding: 13px 20px;
+
+  border: 1px solid var(--gold);
+
+  color: var(--gold);
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  letter-spacing: 1.3px;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.nav-book-btn:hover {
+  background: var(--gold);
+  color: #080808;
+}
+
+.mobile-menu-btn {
+  display: none;
+
+  padding: 5px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--cream);
+
+  font-size: 1.6rem;
+
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* =====================================================
+   MOBILE NAV ANIMATION
+===================================================== */
+
+.mobile-nav-enter-active,
+.mobile-nav-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.mobile-nav-enter-from,
+.mobile-nav-leave-to {
+  opacity: 0;
+  transform: translateY(-15px);
+}
+
+.mobile-nav-enter-to,
+.mobile-nav-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  background:
+    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=90")
+    center / cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.28),
+      rgba(0, 0, 0, 0.65)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.7)
+    );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1050px;
+  padding-top: 90px;
+}
+
+.hero h1 {
+  margin: 25px auto;
+
+  font-size: clamp(4.5rem, 8vw, 8rem);
+
+  font-weight: 500;
+  line-height: 0.86;
+}
+
+.hero h1 span {
+  display: block;
+
+  color: var(--gold-light);
+
+  font-style: italic;
+}
+
+.hero-description {
+  max-width: 690px;
+
+  margin: 0 auto 38px;
+
+  color: #d5d0c9;
+
+  font-size: 1rem;
+}
+
+.hero-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   HERO ANIMATION
+===================================================== */
+
+.hero-eyebrow {
+  opacity: 0;
+  animation: heroFadeUp 0.8s ease forwards;
+}
+
+.hero h1 {
+  opacity: 0;
+  animation: heroFadeUp 1s ease 0.15s forwards;
+}
+
+.hero-description {
+  opacity: 0;
+  animation: heroFadeUp 1s ease 0.3s forwards;
+}
+
+.hero-buttons {
+  opacity: 0;
+  animation: heroFadeUp 1s ease 0.45s forwards;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.scroll-indicator {
+  position: absolute;
+  z-index: 3;
+
+  bottom: 32px;
+  left: 50%;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+
+  color: var(--gold);
+
+  text-decoration: none;
+
+  animation: floatArrow 1.8s ease-in-out infinite;
+}
+
+@keyframes floatArrow {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, 7px);
+  }
+}
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(45px);
+
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about-section {
+  background:
+    radial-gradient(
+      circle at 90% 50%,
+      rgba(202, 167, 101, 0.06),
+      transparent 35%
+    ),
+    var(--background);
+}
+
+.about-image-wrapper {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 14px;
+}
+
+.about-image-wrapper::before {
+  content: "";
+
+  position: absolute;
+  z-index: 2;
+
+  top: 0;
+  left: 0;
+
+  width: 140px;
+  height: 110px;
+
+  border-top: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+
+  pointer-events: none;
+}
+
+.about-image-wrapper::after {
+  content: "";
+
+  position: absolute;
+  z-index: 2;
+
+  right: 0;
+  bottom: 0;
+
+  width: 140px;
+  height: 110px;
+
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+
+  pointer-events: none;
+}
+
+.about-image {
+  height: 580px;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.55s ease,
+    filter 0.55s ease;
+}
+
+.about-image-wrapper:hover .about-image {
+  transform: scale(1.015);
+
+  filter: brightness(1.05);
+}
+
+.about-signature {
+  position: absolute;
+
+  z-index: 3;
+
+  bottom: 2px;
+  left: 45px;
+
+  color: var(--gold);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 2.2rem;
+
+  font-style: italic;
+}
+
+.about-content {
+  padding-left: 35px;
+}
+
+/* =====================================================
+   FEATURED DISHES
+===================================================== */
+
+.menu-section {
+  background: var(--background-light);
+}
+
+.dish-card {
+  height: 100%;
+
+  overflow: hidden;
+
+  background: var(--background-card);
+
+  border: 1px solid var(--border);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.dish-card:hover {
+  transform: translateY(-10px);
+
+  border-color: var(--gold-border);
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.dish-image-wrapper {
+  height: 340px;
+
+  overflow: hidden;
+}
+
+.dish-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.55s ease,
+    filter 0.55s ease;
+}
+
+.dish-card:hover .dish-image {
+  transform: scale(1.05);
+
+  filter: brightness(1.05);
+}
+
+.dish-content {
+  padding: 28px;
+}
+
+.dish-title-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.dish-title-row h3 {
+  margin: 0;
+
+  font-size: 1.9rem;
+}
+
+.dish-title-row span {
+  color: var(--gold);
+}
+
+.dish-content p {
+  margin: 14px 0 0;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+}
+
+/* =====================================================
+   FULL MENU
+===================================================== */
+
+.full-menu-wrapper {
+  margin-top: 120px;
+
+  padding-top: 100px;
+
+  border-top: 1px solid var(--border);
+}
+
+.full-menu-heading {
+  margin-bottom: 50px;
+}
+
+.menu-tabs {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 55px;
+}
+
+.menu-tab {
+  min-width: 120px;
+
+  padding: 13px 22px;
+
+  background: transparent;
+
+  border: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 0.7rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.menu-tab:hover {
+  color: var(--gold);
+
+  border-color: var(--gold);
+
+  transform: translateY(-2px);
+}
+
+.menu-tab.active {
+  background: var(--gold);
+
+  border-color: var(--gold);
+
+  color: #090909;
+}
+
+.menu-list {
+  max-width: 950px;
+
+  margin: 0 auto;
+}
+
+.menu-list-item {
+  padding: 27px 0;
+
+  border-bottom: 1px solid var(--border);
+
+  transition:
+    padding-left 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.menu-list-item:hover {
+  padding-left: 10px;
+
+  border-color: var(--gold-border);
+}
+
+.menu-item-main {
+  width: 100%;
+}
+
+.menu-item-heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.menu-item-heading h3 {
+  margin: 0;
+
+  color: var(--cream);
+
+  font-size: 1.7rem;
+
+  white-space: nowrap;
+}
+
+.menu-item-heading span {
+  color: var(--gold);
+
+  font-size: 1rem;
+
+  white-space: nowrap;
+}
+
+.menu-dots {
+  flex: 1;
+
+  height: 1px;
+
+  border-bottom: 1px dotted rgba(202, 167, 101, 0.35);
+}
+
+.menu-list-item p {
+  max-width: 680px;
+
+  margin: 8px 0 0;
+
+  color: var(--muted);
+
+  font-size: 0.85rem;
+}
+
+.menu-bottom-note {
+  margin-top: 55px;
+}
+
+.menu-bottom-note p {
+  margin-bottom: 25px;
+
+  color: var(--muted);
+
+  font-size: 0.8rem;
+}
+
+/* =====================================================
+   EXPERIENCE / GALLERY
+===================================================== */
+
+.experience-section {
+  background: var(--background);
+}
+
+.gallery-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  grid-auto-rows: 180px;
+
+  gap: 12px;
+
+  overflow: hidden;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.55s ease,
+    filter 0.55s ease,
+    opacity 0.35s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.04);
+
+  filter: brightness(0.86);
+}
+
+.gallery-grid img:nth-child(2) {
+  grid-row: span 2;
+}
+
+.gallery-grid img:nth-child(4) {
+  grid-row: span 2;
+}
+
+/* =====================================================
+   REVIEWS
+===================================================== */
+
+.reviews-section {
+  background: #0d0d0d;
+}
+
+.review-card {
+  position: relative;
+
+  height: 100%;
+
+  padding: 38px 32px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0)
+    ),
+    #0a0a0a;
+
+  border: 1px solid var(--border);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-10px);
+
+  border-color: var(--gold-border);
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.review-quote {
+  position: absolute;
+
+  top: 20px;
+  right: 25px;
+
+  color: rgba(202, 167, 101, 0.12);
+
+  font-size: 4rem;
+}
+
+.review-stars {
+  display: flex;
+
+  gap: 5px;
+
+  margin-bottom: 25px;
+
+  color: var(--gold);
+
+  font-size: 0.85rem;
+}
+
+.review-text {
+  min-height: 145px;
+
+  margin-bottom: 30px;
+
+  color: #c7c1b8;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.35rem;
+
+  line-height: 1.6;
+
+  font-style: italic;
+}
+
+.review-footer {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid var(--border);
+}
+
+.review-avatar {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid var(--gold-border);
+
+  border-radius: 50%;
+
+  color: var(--gold);
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 1.4rem;
+}
+
+.review-footer h3 {
+  margin: 0;
+
+  color: var(--cream);
+
+  font-size: 1.2rem;
+}
+
+.review-footer span {
+  color: var(--muted);
+
+  font-size: 0.72rem;
+}
+
+/* =====================================================
+   LOCATION
+===================================================== */
+
+.location-section {
+  background:
+    radial-gradient(
+      circle at 20% 40%,
+      rgba(202, 167, 101, 0.05),
+      transparent 30%
+    ),
+    var(--background);
+}
+
+.location-content {
+  height: 100%;
+
+  padding: 20px 10px 20px 0;
+}
+
+.location-details {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 28px;
+
+  margin: 35px 0;
+}
+
+.location-detail {
+  display: flex;
+
+  gap: 18px;
+
+  align-items: flex-start;
+}
+
+.location-detail > i {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid var(--gold-border);
+
+  color: var(--gold);
+
+  font-size: 1rem;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.location-detail:hover > i {
+  background: var(--gold);
+
+  color: #090909;
+
+  transform: translateY(-3px);
+}
+
+.location-detail h3 {
+  margin: 0 0 6px;
+
+  color: var(--cream);
+
+  font-size: 1.3rem;
+}
+
+.location-detail p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 0.82rem;
+
+  line-height: 1.6;
+}
+
+.location-buttons {
+  display: flex;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   MAP
+===================================================== */
+
+.map-wrapper {
+  position: relative;
+
+  min-height: 620px;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  border: 1px solid var(--gold-border);
+
+  background: #111;
+}
+
+.map-wrapper iframe {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  filter:
+    grayscale(100%)
+    invert(92%)
+    contrast(85%);
+}
+
+/* =====================================================
+   BOOKING
+===================================================== */
+
+.booking-section {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.84),
+      rgba(0, 0, 0, 0.91)
+    ),
+    url("https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=2000&q=85")
+    center / cover no-repeat;
+}
+
+.booking-wrapper {
+  max-width: 1050px;
+
+  margin: auto;
+
+  padding: 65px;
+
+  background: rgba(9, 9, 9, 0.93);
+
+  border: 1px solid var(--gold-border);
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.form-label {
+  color: var(--cream);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 1.4px;
+
+  text-transform: uppercase;
+}
+
+.form-control,
+.form-select {
+  min-height: 52px;
+
+  padding: 13px 14px;
+
+  background: #0e0e0e;
+
+  border: 1px solid #343434;
+
+  border-radius: 0;
+
+  color: white;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+textarea.form-control {
+  min-height: 120px;
+}
+
+.form-control::placeholder {
+  color: #676767;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: #0e0e0e;
+
+  color: white;
+
+  border-color: var(--gold);
+
+  box-shadow: none;
+}
+
+.form-select option {
+  background: #111;
+
+  color: white;
+}
+
+.booking-submit {
+  width: 100%;
+
+  margin-top: 8px;
+}
+
+.booking-benefits {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 55px;
+
+  flex-wrap: wrap;
+
+  margin-top: 38px;
+
+  padding-top: 30px;
+
+  border-top: 1px solid var(--border);
+}
+
+.booking-benefits div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--muted);
+
+  font-size: 0.75rem;
+}
+
+.booking-benefits i {
+  color: var(--gold);
+
+  font-size: 1.15rem;
+}
+
+.booking-confirmation {
+  max-width: 700px;
+
+  margin: auto;
+
+  text-align: center;
+}
+
+.booking-confirmation > i {
+  display: block;
+
+  margin-bottom: 25px;
+
+  color: var(--gold);
+
+  font-size: 4rem;
+}
+
+.booking-confirmation p {
+  color: var(--muted);
+}
+
+.booking-confirmation strong {
+  color: var(--cream);
+}
+
+.confirmation-note {
+  margin: 25px 0 30px;
+}
+
+.booking-error {
+  margin-bottom: 25px;
+
+  padding: 15px 18px;
+
+  border: 1px solid rgba(255, 90, 90, 0.35);
+
+  background: rgba(255, 70, 70, 0.07);
+
+  color: #ffb3b3;
+
+  font-size: 0.85rem;
+}
+
+.booking-error i {
+  margin-right: 8px;
+}
+
+.booking-submit:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+  padding: 85px 0 30px;
+
+  background: #060606;
+
+  border-top: 1px solid var(--border);
+}
+
+.footer-logo {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  color: var(--cream);
+
+  font-size: 2.3rem;
+
+  letter-spacing: 5px;
+
+  text-decoration: none;
+}
+
+.footer-logo:hover {
+  color: var(--gold);
+}
+
+.footer-description {
+  max-width: 350px;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+}
+
+.footer h4 {
+  margin-bottom: 22px;
+
+  color: var(--cream);
+
+  font-size: 1.45rem;
+}
+
+.footer p {
+  margin-bottom: 7px;
+
+  color: var(--muted);
+
+  font-size: 0.85rem;
+}
+
+.footer-links {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.footer-links a,
+.footer-contact-link {
+  display: block;
+
+  color: var(--muted);
+
+  text-decoration: none;
+
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover,
+.footer-contact-link:hover {
+  color: var(--gold);
+}
+
+.social-links {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.social-links a {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  color: var(--gold);
+
+  text-decoration: none;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.social-links a:hover {
+  background: var(--gold);
+
+  border-color: var(--gold);
+
+  color: #090909;
+
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-top: 60px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid var(--border);
+
+  color: #686868;
+
+  font-size: 0.7rem;
+}
+
+/* =====================================================
+   TABLET / DESKTOP SMALL
+===================================================== */
+
+@media (max-width: 1199px) {
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 0.65rem;
+  }
+}
+
+/* =====================================================
+   TABLET NAV
+===================================================== */
+
+@media (max-width: 992px) {
+  .nav-links,
+  .nav-book-btn {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .mobile-menu {
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin: 0;
+
+    padding:
+      15px
+      max(25px, calc((100vw - 720px) / 2))
+      30px;
+
+    background: rgba(7, 7, 7, 0.98);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-bottom: 1px solid var(--gold-border);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+  }
+
+  .mobile-menu a {
+    position: relative;
+
+    display: block;
+
+    padding: 15px 0;
+
+    color: var(--cream);
+
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    font-size: 0.76rem;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a.active {
+    color: var(--gold);
+  }
+
+  .mobile-menu a.active:not(.mobile-book-button) {
+    padding-left: 15px;
+  }
+
+  .mobile-menu a.active:not(.mobile-book-button)::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    width: 5px;
+
+    height: 5px;
+
+    background: var(--gold);
+
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+  }
+
+  .mobile-menu .mobile-book-button {
+    margin-top: 20px;
+
+    padding: 15px 20px;
+
+    background: var(--gold);
+
+    border: 1px solid var(--gold);
+
+    color: #090909;
+
+    text-align: center;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    font-size: 0.7rem;
+
+    font-weight: 600;
+  }
+
+  .mobile-menu .mobile-book-button:hover {
+    background: var(--gold-light);
+
+    color: #090909;
+  }
+
+  .about-content {
+    padding-left: 0;
+  }
+
+  .about-image {
+    height: 480px;
+  }
+
+  .gallery-grid {
+    margin-top: 25px;
+  }
+
+  .map-wrapper {
+    min-height: 500px;
+  }
+
+  .location-content {
+    padding-right: 0;
+  }
+}
+
+/* =====================================================
+   MOBILE / SMALL TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .section-padding {
+    padding: 85px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 42px;
+  }
+
+  .section-description {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+  }
+
+  .hero-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .hero h1 {
+    font-size: 4.2rem;
+    line-height: 0.92;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .about-image {
+    height: 420px;
+  }
+
+  .about-content {
+    margin-top: 35px;
+  }
+
+  .dish-image-wrapper {
+    height: 300px;
+  }
+
+  .full-menu-wrapper {
+    margin-top: 85px;
+
+    padding-top: 75px;
+  }
+
+  .menu-tabs {
+    width: 100%;
+
+    gap: 8px;
+
+    margin-bottom: 40px;
+  }
+
+  .menu-tab {
+    flex: 1 1 40%;
+
+    min-width: auto;
+
+    padding: 12px 15px;
+  }
+
+  .menu-item-heading h3 {
+    font-size: 1.45rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-auto-rows: 160px;
+  }
+
+  .gallery-grid img:nth-child(2),
+  .gallery-grid img:nth-child(4) {
+    grid-row: auto;
+  }
+
+  .review-text {
+    min-height: auto;
+  }
+
+  .review-card {
+    margin-bottom: 5px;
+  }
+
+  .location-content {
+    padding-top: 0;
+  }
+
+  .map-wrapper {
+    min-height: 420px;
+  }
+
+  .booking-wrapper {
+    padding: 40px 25px;
+  }
+
+  .booking-benefits {
+    flex-direction: column;
+
+    gap: 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .reveal {
+    transform: translateY(30px);
+  }
+}
+
+/* =====================================================
+   PHONE POLISH
+===================================================== */
+
+@media (max-width: 576px) {
+  html {
+    scroll-padding-top: 75px;
+  }
+
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .section-padding {
+    padding: 75px 0;
+  }
+
+  h2 {
+    font-size: 2.75rem;
+    line-height: 0.95;
+  }
+
+  .section-label {
+    font-size: 0.63rem;
+    letter-spacing: 3px;
+  }
+
+  .section-description {
+    font-size: 0.85rem;
+    line-height: 1.75;
+  }
+
+  .main-navbar {
+    padding: 18px 0;
+  }
+
+  .main-navbar.scrolled {
+    padding: 12px 0;
+  }
+
+  .restaurant-logo {
+    font-size: 1.45rem;
+    letter-spacing: 4px;
+  }
+
+  .main-navbar.scrolled .restaurant-logo {
+    font-size: 1.4rem;
+  }
+
+  .restaurant-logo small {
+    margin-top: 5px;
+
+    font-size: 0.36rem;
+
+    letter-spacing: 3.5px;
+  }
+
+  .mobile-menu-btn {
+    font-size: 1.5rem;
+  }
+
+  .hero {
+    min-height: 100svh;
+
+    background-position: center;
+  }
+
+  .hero-content {
+    padding-top: 90px;
+  }
+
+  .hero h1 {
+    margin: 20px auto;
+
+    font-size: clamp(
+      3.2rem,
+      16vw,
+      4.2rem
+    );
+
+    line-height: 0.88;
+  }
+
+  .hero-description {
+    max-width: 340px;
+
+    margin-bottom: 30px;
+
+    font-size: 0.84rem;
+
+    line-height: 1.7;
+  }
+
+  .hero-buttons {
+    width: 100%;
+
+    max-width: 300px;
+
+    flex-direction: column;
+
+    margin: auto;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+
+    padding: 15px 20px;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  .about-image-wrapper {
+    padding: 10px;
+  }
+
+  .about-image {
+    height: 390px;
+  }
+
+  .about-image-wrapper::before,
+  .about-image-wrapper::after {
+    width: 90px;
+
+    height: 75px;
+  }
+
+  .about-signature {
+    left: 28px;
+
+    font-size: 1.65rem;
+  }
+
+  .dish-image-wrapper {
+    height: 260px;
+  }
+
+  .dish-content {
+    padding: 23px;
+  }
+
+  .dish-title-row h3 {
+    font-size: 1.6rem;
+  }
+
+  .full-menu-wrapper {
+    margin-top: 70px;
+
+    padding-top: 65px;
+  }
+
+  .menu-tabs {
+    gap: 7px;
+  }
+
+  .menu-tab {
+    flex: 1 1 calc(50% - 7px);
+
+    min-height: 46px;
+
+    padding: 11px 8px;
+
+    font-size: 0.62rem;
+  }
+
+  .menu-list-item {
+    padding: 22px 0;
+  }
+
+  .menu-list-item:hover {
+    padding-left: 0;
+  }
+
+  .menu-item-heading {
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+  }
+
+  .menu-item-heading h3 {
+    max-width: 75%;
+
+    font-size: 1.35rem;
+
+    white-space: normal;
+  }
+
+  .menu-dots {
+    display: none;
+  }
+
+  .menu-item-heading span {
+    margin-left: auto;
+
+    padding-top: 3px;
+  }
+
+  .menu-list-item p {
+    padding-right: 0;
+
+    font-size: 0.8rem;
+
+    line-height: 1.65;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+
+    grid-auto-rows: 250px;
+
+    gap: 10px;
+  }
+
+  .gallery-grid img:nth-child(2),
+  .gallery-grid img:nth-child(4) {
+    grid-row: auto;
+  }
+
+  .review-card {
+    padding: 28px 22px;
+  }
+
+  .review-quote {
+    top: 15px;
+
+    right: 20px;
+
+    font-size: 3rem;
+  }
+
+  .review-text {
+    margin-bottom: 25px;
+
+    font-size: 1.15rem;
+  }
+
+  .location-details {
+    gap: 23px;
+  }
+
+  .location-detail {
+    gap: 14px;
+  }
+
+  .location-detail > i {
+    width: 40px;
+
+    height: 40px;
+  }
+
+  .location-detail h3 {
+    font-size: 1.2rem;
+  }
+
+  .location-buttons {
+    flex-direction: column;
+  }
+
+  .location-buttons .btn {
+    width: 100%;
+  }
+
+  .map-wrapper {
+    min-height: 320px;
+  }
+
+  .booking-wrapper {
+    padding: 32px 18px;
+  }
+
+  .form-control,
+  .form-select {
+    min-height: 50px;
+
+    font-size: 16px;
+  }
+
+  textarea.form-control {
+    min-height: 110px;
+  }
+
+  .booking-benefits {
+    align-items: flex-start;
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+  }
+
+  .footer {
+    padding:
+      65px
+      0
+      25px;
+  }
+
+  .footer-logo {
+    font-size: 2rem;
+  }
+
+  .footer-bottom {
+    margin-top: 45px;
+  }
+}
+
+/* =====================================================
+   EXTRA SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.45rem;
+  }
+
+  .restaurant-logo {
+    font-size: 1.3rem;
+  }
+
+  .menu-tab {
+    flex: 1 1 100%;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-eyebrow,
+  .hero h1,
+  .hero-description,
+  .hero-buttons {
+    opacity: 1;
+  }
+}
+/* =====================================================
+   BOOKING REFERENCE
+===================================================== */
+
+.booking-reference {
+  margin: 15px 0 30px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
+.booking-reference strong {
+  color: var(--gold);
+}
+
+/* =====================================================
+   BOOKING AVAILABILITY
+===================================================== */
+
+.availability-box {
+  padding: 14px 16px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.025
+  );
+
+  border: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-size: 0.82rem;
+}
+
+.availability-box.available {
+  border-color:
+    rgba(
+      80,
+      200,
+      120,
+      0.45
+    );
+
+  background:
+    rgba(
+      80,
+      200,
+      120,
+      0.07
+    );
+
+  color: #a9dfb9;
+}
+
+.availability-box.unavailable {
+  border-color:
+    rgba(
+      255,
+      90,
+      90,
+      0.45
+    );
+
+  background:
+    rgba(
+      255,
+      70,
+      70,
+      0.07
+    );
+
+  color: #ffb3b3;
+}
+
+.availability-box i {
+  margin-right: 8px;
+}
+
+.booking-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
