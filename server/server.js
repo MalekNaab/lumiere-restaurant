@@ -499,6 +499,18 @@ ${specialRequests || "None"}`,
 );
 
 
+
+// =====================================================
+// DEPLOYMENT TEST
+// =====================================================
+
+app.get("/api/ping", (req, res) => {
+  res.json({
+    success: true,
+    version: "2.0.0",
+    message: "Lumiere production API routes are loaded."
+  });
+});
 // =====================================================
 // START SERVER
 // =====================================================
