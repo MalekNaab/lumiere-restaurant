@@ -6,6 +6,8 @@ import {
   watch
 } from "vue";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const submitted = ref(false);
 const loading = ref(false);
 const errorMessage = ref("");
@@ -123,7 +125,7 @@ const checkAvailability = async () => {
 
     const response =
       await fetch(
-        `http://localhost:3000/api/availability?${params.toString()}`
+        `${API_URL}/api/availability?${params.toString()}`
       );
 
     const data =
@@ -193,7 +195,7 @@ const submitBooking = async () => {
   try {
     const response =
       await fetch(
-        "http://localhost:3000/api/bookings",
+        `${API_URL}/api/bookings`,
         {
           method: "POST",
 
@@ -667,4 +669,6 @@ const resetBooking = () => {
     </div>
   </section>
 </template>
+
+
 
