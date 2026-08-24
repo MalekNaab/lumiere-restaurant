@@ -49,6 +49,24 @@ app.use(
 );
 
 app.use(express.json());
+// =====================================================
+// REQUEST DIAGNOSTIC
+// =====================================================
+
+app.use((req, res, next) => {
+  console.log(`[REQUEST] ${req.method} ${req.originalUrl}`);
+
+  if (req.path === "/api/ping") {
+    return res.json({
+      success: true,
+      version: "3.0.0",
+      message: "Request reached Lumiere Express server."
+    });
+  }
+
+  next();
+});
+
 
 
 // =====================================================
