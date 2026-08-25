@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { google } = require("googleapis");
+const { DateTime } = require("luxon");
 const path = require("path");
 const fs = require("fs");
 
@@ -49,23 +50,6 @@ app.use(
 );
 
 app.use(express.json());
-// =====================================================
-// REQUEST DIAGNOSTIC
-// =====================================================
-
-app.use((req, res, next) => {
-  console.log(`[REQUEST] ${req.method} ${req.originalUrl}`);
-
-  if (req.path === "/api/ping") {
-    return res.json({
-      success: true,
-      version: "3.0.0",
-      message: "Request reached Lumiere Express server."
-    });
-  }
-
-  next();
-});
 
 
 
@@ -163,25 +147,27 @@ app.get("/", (req, res) => {
 
 function buildBookingTimes(date, time) {
 
-  const start = new Date(
-    `${date}T${time}:00`
+  const start = DateTime.fromISO(
+    `${date}T${time}`,
+    {
+      zone: "Europe/London"
+    }
   );
 
-  const end = new Date(
-    start.getTime() +
-      (
-        BOOKING_DURATION_HOURS *
-        60 *
-        60 *
-        1000
-      )
-  );
+  if (!start.isValid) {
+    throw new Error(
+      `Invalid booking date/time: ${date} ${time}`
+    );
+  }
+
+  const end = start.plus({
+    hours: BOOKING_DURATION_HOURS
+  });
 
   return {
-    start,
-    end
+    start: start.toISO(),
+    end: end.toISO()
   };
-
 }
 
 
@@ -201,10 +187,10 @@ async function checkAvailability(
         process.env.GOOGLE_CALENDAR_ID,
 
       timeMin:
-        start.toISOString(),
+        start,
 
       timeMax:
-        end.toISOString(),
+        end,
 
       singleEvents:
         true,
@@ -433,7 +419,7 @@ ${specialRequests || "None"}`,
         start: {
 
           dateTime:
-            start.toISOString(),
+            start,
 
           timeZone:
             "Europe/London"
@@ -443,7 +429,7 @@ ${specialRequests || "None"}`,
         end: {
 
           dateTime:
-            end.toISOString(),
+            end,
 
           timeZone:
             "Europe/London"
@@ -518,17 +504,6 @@ ${specialRequests || "None"}`,
 
 
 
-// =====================================================
-// DEPLOYMENT TEST
-// =====================================================
-
-app.get("/api/ping", (req, res) => {
-  res.json({
-    success: true,
-    version: "2.0.0",
-    message: "Lumiere production API routes are loaded."
-  });
-});
 // =====================================================
 // START SERVER
 // =====================================================
